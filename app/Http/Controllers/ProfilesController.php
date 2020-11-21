@@ -14,7 +14,10 @@ class ProfilesController extends Controller
 {
     public function show(User $user)
     {
-        return view('profiles.show', compact('user'));
+        return view('profiles.show', [
+            'user' => $user,
+            'tweets' => $user->tweets()->withLikes()->paginate(50),
+        ]);
     }
 
     public function edit (User $user)
@@ -28,19 +31,21 @@ class ProfilesController extends Controller
     {
         $attributes = request()->validate([
             'name' =>['string', 'required', 'max:255', 'alpha_dash', Rule::unique('users')->ignore($user),],
+            'avatar' => ['file'],
             'email' => ['string', 'required', 'email', Rule::unique('users')->ignore($user)],
             'password' => ['string', 'required', 'min:8', 'max:255', 'confirmed']
         ]);
 
-        $password = Hash::make($attributes['password']);
-            
-        $user->update([
-            "name" => $attributes['name'],
-            "email" => $attributes['email'],
-            "password" => $password,
-        ]);
+        $attributes['password'] = Hash::make($attributes['password']);
 
-        return "done";
+        if(request('avatar')){
+            $attributes['avatar'] = request('avatar')->store('avatars');
+        }
+            
+        $user->update($attributes);
+
+
+        return redirect($user->path());
     }
 
 

@@ -1,5 +1,5 @@
 <x-app>
-    <form method="POST" action="{{$user->path('edit')}}">
+    <form method="POST" action="{{$user->path('edit')}}" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 
@@ -18,6 +18,31 @@
             @error('name')
                 <p class="text-red-500 text-xs mt-2">{{$message}}</p>
             @enderror
+
+
+
+        </div>
+
+
+        <div class="mb-6">
+            <label for="avatar" class="block mb-2 uppercase font-bold text-xs text-gray-700">
+                Avatar
+            </label>
+            <div class="flex">
+                <input 
+                    type="file" 
+                    class="border border-gray-400 p-2 w-full"
+                    name="avatar"
+                    id="avatar"
+                    >
+                    <img src="{{ $user->avatar}}" alt="profile pic" width="50">
+                
+
+            </div>
+
+            @error('avatar')
+                    <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+                @enderror
 
         </div>
 
@@ -78,6 +103,9 @@
             class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500">
             Submit
             </button>
+
+            <a href="{{$user->path()}}" class="hover:underline">Cancel</a>
+
         </div>
 
     </form>
