@@ -25,6 +25,27 @@
 
 
         <div class="mb-6">
+            <label for="bio" class="block mb-2 uppercase font-bold text-xs text-gray-700">
+                Bio
+            </label>
+            <input 
+                type="text" 
+                class="border border-gray-400 p-2 w-full"
+                name="bio"
+                id="bio"
+                value="{{$user->bio}}"
+                required
+                >
+            @error('bio')
+                <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+            @enderror
+
+
+
+        </div>
+
+
+        <div class="mb-6">
             <label for="avatar" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                 Avatar
             </label>
@@ -45,6 +66,31 @@
                 @enderror
 
         </div>
+
+        
+
+        <div class="mb-6">
+            <label for="cover" class="block mb-2 uppercase font-bold text-xs text-gray-700">
+                Cover
+            </label>
+            <div class="flex">
+                <input 
+                    type="file" 
+                    class="border border-gray-400 p-2 w-full"
+                    name="cover"
+                    id="cover"
+                    >
+                    <img src="{{ $user->cover}}" alt="cover img" width="50">
+                
+
+            </div>
+
+            @error('cover')
+                    <p class="text-red-500 text-xs mt-2">{{$message}}</p>
+                @enderror
+
+        </div>
+
 
         <div class="mb-6">
             <label for="email" class="block mb-2 uppercase font-bold text-xs text-gray-700">

@@ -3,7 +3,7 @@
     
     <header class="mb-6 relative">
         <div class="relative">
-            <img src="/images/default.jpg" alt="propic" class="mb-2" >
+            <img src="{{ $user->cover}}" alt="cover" class="mb-2" >
             <img src="{{ $user->avatar }}" alt="profile" 
             class="rounded-full mr-2 absolute bottom-0 transform -translate-x-1/2 translate-y-1/2" width="150" style="left: 50%" >
         </div>
@@ -23,7 +23,7 @@
             </div>
 
         </div>
-        <p class="text-sm">Ami ansar bahinir lok fdsfjdkfj dfjkdf kdfj dkdfj kdjf </p>
+        <p class="text-sm">{{$user->bio}}</p>
 
         
        

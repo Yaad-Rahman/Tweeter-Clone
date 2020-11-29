@@ -28,7 +28,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'avatar'
+        'avatar',
+        'cover',
+        'bio',
     ];
 
     /**
@@ -111,6 +113,20 @@ class User extends Authenticatable
     }
 
     public function likes() { return $this->hasMany(Like::class); }
+
+
+
+    public function getCoverAttribute($value)
+    {
+        if($value)
+        {
+            return asset('storage/' .$value);
+        }
+        else {
+            return asset('/images/default.jpg');
+        }
+        
+    }
 
     
 }

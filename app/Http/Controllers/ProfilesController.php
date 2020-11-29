@@ -32,6 +32,8 @@ class ProfilesController extends Controller
         $attributes = request()->validate([
             'name' =>['string', 'required', 'max:255', 'alpha_dash', Rule::unique('users')->ignore($user),],
             'avatar' => ['file'],
+            'cover' => ['file'],
+            'bio' => ['string', 'min:20', 'max: 500'], 
             'email' => ['string', 'required', 'email', Rule::unique('users')->ignore($user)],
             'password' => ['string', 'required', 'min:8', 'max:255', 'confirmed']
         ]);
@@ -40,6 +42,10 @@ class ProfilesController extends Controller
 
         if(request('avatar')){
             $attributes['avatar'] = request('avatar')->store('avatars');
+        }
+
+        if(request('cover')){
+            $attributes['cover'] = request('cover')->store('covers');
         }
             
         $user->update($attributes);
