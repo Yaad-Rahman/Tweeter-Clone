@@ -11,11 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tweet extends Model
 {
-    
+
 
     protected $fillable = [
         'user_id',
-        'body'
+        'body',
+        'pic'
     ];
 
     use HasFactory;
@@ -23,6 +24,17 @@ class Tweet extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getPicAttribute($value)
+    {
+        if($value){
+            return asset('storage/' .$value);
+        }
+        else {
+            return null;
+        }
+
     }
 
     public function scopeWithLikes(Builder $query)
@@ -42,6 +54,13 @@ class Tweet extends Model
             [
             'liked' => $liked
             ],
+        );
+    }
+
+    public function unlike ($user =null, $liked=true)
+    {
+        $this->likes()->destroy(
+            $user? $user->id : auth()->id()
         );
     }
 
@@ -65,5 +84,5 @@ class Tweet extends Model
         return $this->hasMany(Like::class);
     }
 
-    
+
 }

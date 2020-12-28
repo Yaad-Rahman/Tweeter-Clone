@@ -9,17 +9,25 @@ class TweetController extends Controller
 {
     public function store()
     {
-        $attributes = request()->validate(['body' => 'required|max:255']);
+        $attributes = request()->validate([
+            'body' => ['required', 'max:255'],
+            'pic' => ['file'=>'max:1500'],
+            ]);
+
+        if (request('pic')) {
+            $attributes['pic'] = request('pic')->store('tweets');
+        }
 
         Tweet::create([
             'user_id' => auth()->id(),
-            'body' => $attributes['body']
+            'body' => $attributes['body'],
+            'pic' => $attributes['pic']
         ]);
 
         return redirect()->route('home');
     }
 
-    public function index() 
+    public function index()
     {
 
         return view('tweets.index', [

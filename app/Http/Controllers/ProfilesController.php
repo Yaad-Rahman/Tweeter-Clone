@@ -47,6 +47,7 @@ class ProfilesController extends Controller
         if(request('cover')){
             $attributes['cover'] = request('cover')->store('covers');
         }
+        
             
         $user->update($attributes);
 

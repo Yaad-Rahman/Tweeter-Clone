@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tweet;
+use App\Models\Like;
 
 use Illuminate\Http\Request;
 
@@ -14,6 +15,15 @@ class TweetLikesController extends Controller
 
         return back();
     }
+
+    public function unlike(Tweet $tweet)
+    {
+        $tweet->unlike(current_user());
+
+        return back();
+    }
+
+
 
     public function destroy(Tweet $tweet)
     {

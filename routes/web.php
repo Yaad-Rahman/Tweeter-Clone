@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function(){
     Route::post('/tweets/{tweet}/like', [TweetLikesController::class, 'store']);
     Route::delete('/tweets/{tweet}/like', [TweetLikesController::class, 'destroy']);
 
+    Route::post('/tweets/{tweet}/unlike', [TweetLikesController::class, 'unlike']);
+
     Route::post('/tweets', [TweetController::class, 'store']);
     Route::post('/profiles/{user:name}/follow', [FollowsController::class, 'store']);
     Route::get('/profiles/{user:name}/edit', [ProfilesController::class, 'edit']);
