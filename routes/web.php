@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function(){
     Route::patch('/profiles/{user:name}/edit', [ProfilesController::class, 'update']);
     Route::get('/explore', [ExploreController::class, 'index']);
 
+    Route::get('/notifications', [NotificationsController::class, 'index']);
+
 });
 
 Route::get('/profiles/{user:name}', [ProfilesController::class, 'show'])->name('profile');

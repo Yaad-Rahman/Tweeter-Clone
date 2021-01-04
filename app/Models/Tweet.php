@@ -57,11 +57,9 @@ class Tweet extends Model
         );
     }
 
-    public function unlike ($user =null, $liked=true)
+    public function unlike ($id)
     {
-        $this->likes()->destroy(
-            $user? $user->id : auth()->id()
-        );
+        Like::where('tweet_id', $id)->delete();
     }
 
     public function dislike($user =null)

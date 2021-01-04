@@ -18,7 +18,7 @@ class TweetLikesController extends Controller
 
     public function unlike(Tweet $tweet)
     {
-        $tweet->unlike(current_user());
+        $tweet->unlike($tweet->id);
 
         return back();
     }
