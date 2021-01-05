@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\SimpleMessage;
 
 class followed extends Notification
 {
@@ -54,6 +55,10 @@ class followed extends Notification
      */
     public function toArray($notifiable)
     {
-        return 'You started following ' .$this->name;
+        return [
+            'message' => 'you started following',
+            'followingUser' => $this->name,
+            'action' => url('/profiles/' .$this->name),
+        ];
     }
 }

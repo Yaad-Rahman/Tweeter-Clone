@@ -54,6 +54,10 @@ class Unfollow extends Notification
      */
     public function toArray($notifiable)
     {
-        return "You unfollowed " .$this->name;
+        return [
+            'message' => 'You unfollowed',
+            'followingUser' => $this->name,
+            'action' => url('/profiles/' .$this->name),
+        ];
     }
 }

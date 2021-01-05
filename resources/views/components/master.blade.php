@@ -10,6 +10,9 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
+        <!-- FontAwesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css">
+
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
@@ -25,6 +28,10 @@
                     <h1>
                         <img src="/images/logo.svg" alt="tweety" >
                     </h1>
+                    <div class="float-right">
+                        @livewire('notification')
+                    </div>
+                    
                 </header>
             </section>
             {{$slot}}
