@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
 
+
 class TweetController extends Controller
 {
     public function store()
@@ -23,6 +24,10 @@ class TweetController extends Controller
             'body' => $attributes['body'],
             'pic' => $attributes['pic']
         ]);
+
+        session()->flash('message', "Your tweet created successfully!");
+
+
 
         return redirect()->route('home');
     }

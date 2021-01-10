@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- FontAwesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -28,8 +28,9 @@
                     <h1>
                         <img src="/images/logo.svg" alt="tweety" >
                     </h1>
-                    <div class="float-right">
+                    <div class="float-right mr-20">
                         @livewire('notification')
+                        
                     </div>
                     
                 </header>
@@ -41,6 +42,5 @@
 
         @livewireScripts
 
-        <script src="http://unpkg.com/turbolinks"></script>
     </body>
 </html>
